@@ -2,8 +2,8 @@
 
 This project is a full-stack machine monitoring dashboard with:
 
-- a `Next.js` frontend in [`/home/vijay/Desktop/workspace/scitech_assignment/frontend`](./frontend)
-- a `NestJS` backend in [`/home/vijay/Desktop/workspace/scitech_assignment/backend`](./backend)
+- a `Next.js` frontend in [`scitech_assignment/frontend`](./frontend)
+- a `NestJS` backend in [`scitech_assignment/backend`](./backend)
 - `MongoDB` for machine data storage
 - JWT-based authentication for protected API routes
 
@@ -58,17 +58,12 @@ Make sure these are installed locally:
 
 The backend uses environment variables from `backend/.env`.
 
-1. Copy the example file:
 
-```bash
-cp backend/.env.example backend/.env
-```
-
-2. Update values if needed:
+Update values if needed:
 
 ```env
-MONGO_URI=mongodb://localhost:27017/scitech
-JWT_SECRET=supersecret
+MONGO_URI=mongodb+srv://vijay:vijay@cluster0.iypqrll.mongodb.net/?appName=Cluster0
+JWT_SECRET=secret123
 PORT=3001
 ```
 
@@ -92,7 +87,7 @@ Start the backend:
 
 ```bash
 cd backend
-npm run start:dev
+npm run start
 ```
 
 The backend runs on `http://localhost:3001`.
@@ -126,7 +121,7 @@ Base URL: `http://localhost:3001`
 
 - `GET /machines` - fetch all machines
 - `POST /machines` - create a machine
-- `GET /machines/:machineId` - fetch one machine by `machineId` or Mongo `_id`
+- `GET /machines/:machineId` - fetch one machine by `machineId` 
 - `PATCH /machines/:machineId` - update a machine by `machineId`
 
 Example machine payload:
@@ -138,6 +133,7 @@ Example machine payload:
   "status": "Running",
   "temperature": 72,
   "energyConsumption": 18.4
+  
 }
 ```
 
@@ -152,37 +148,10 @@ Example machine payload:
 ## Notes
 
 - CORS is currently configured for `http://localhost:3000`
-- The backend sets an HTTP-only cookie and also returns the access token in the login response
+- The backend sets an (HTTP-only:false for now) cookie and also returns the access token in the login response
 - Machine detail history is generated on the backend from the current temperature
 - Authentication credentials are hardcoded for demo purposes in the current implementation
 
-## Available Scripts
 
-### Backend
 
-```bash
-npm run start
-npm run start:dev
-npm run build
-npm run test
-npm run test:e2e
-npm run lint
-```
 
-### Frontend
-
-```bash
-npm run dev
-npm run build
-npm run start
-npm run lint
-```
-
-## Future Improvements
-
-- Replace hardcoded login with database-backed users
-- Add validation for request payloads
-- Add seed data for machines
-- Add loading/error states for all user actions
-- Store frontend API base URL in environment variables
-- Add tests for auth flow and machine updates
